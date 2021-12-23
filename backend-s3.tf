@@ -28,5 +28,5 @@ resource "aws_s3_bucket_object" "s3_key" {
   bucket   = aws_s3_bucket.bkt.id
   acl      = "private"
   key      = var.FOLDER_NAME2
-  source = "${self.bucket}/${self.key}/${each.value}"
+  source   = "${aws_s3_bucket.bkt.bucket}/${var.FOLDER_NAME2}/${each.value}"
 }
