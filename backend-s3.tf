@@ -1,18 +1,32 @@
-resource "aws_s3_bucket" "bkt" {
-  bucket = var.BUCKET_NAME
-  acl    = "private"
+# resource "aws_s3_bucket" "bkt" {
+#   bucket = var.BUCKET_NAME
+#   acl    = "private"
 
-  tags = {
-    Name        = "My bucket"
-    Environment = "Dev"
-  }
-  force_destroy = true
+#   tags = {
+#     Name        = "My bucket"
+#     Environment = "Dev"
+#   }
+#   force_destroy = true
+# }
+
+# resource "aws_s3_bucket_object" "s3_folder" {
+#   bucket = var.BUCKET_NAME
+#   acl    = "private"
+#   key    = var.FOLDER_NAME1
+# }
+
+resource "aws_s3_bucket_object" "s3_key" {   
+  bucket   = var.BUCKET_NAME
+  acl      = "private"
+  key      = "vprofilekey"
+  source   = "vprofilekey"
 }
 
-resource "aws_s3_bucket_object" "s3_folder" {
-  bucket = aws_s3_bucket.bkt.id
-  acl    = "private"
-  key    = var.FOLDER_NAME1
+resource "aws_s3_bucket_object" "s3_key1" {   
+  bucket   = var.BUCKET_NAME
+  acl      = "private"
+  key      = "vprofilekey.pub"
+  source   = "vprofilekey.pub"
 }
 
 terraform {
@@ -21,12 +35,4 @@ terraform {
     key    = "terraform/backend"
     region = "ap-south-1"
   }
-}
-
-resource "aws_s3_bucket_object" "s3_key" {
-  for_each = fileset("vprofilekey", "vprofilekey.pub")
-  bucket   = aws_s3_bucket.bkt.id
-  acl      = "private"
-  key      = var.FOLDER_NAME2
-  source   = "${aws_s3_bucket.bkt.bucket}/${var.FOLDER_NAME2}/${each.value}"
 }
