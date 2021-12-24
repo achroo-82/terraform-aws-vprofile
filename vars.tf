@@ -1,5 +1,5 @@
 variable "REGION" {
-  default = "ap-south-1"
+  default = "us-east-1"
 }
 
 variable "BUCKET_NAME" {
@@ -62,15 +62,15 @@ variable "VPC_NAME" {
 }
 
 variable "ZONE_A" {
-  default = "ap-south-1a"
+  default = "us-east-1a"
 }
 
 variable "ZONE_B" {
-  default = "ap-south-1b"
+  default = "us-east-1b"
 }
 
 variable "ZONE_C" {
-  default = "ap-south-1c"
+  default = "us-east-1c"
 }
 
 variable "VPC_CIDR" {

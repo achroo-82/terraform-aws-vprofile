@@ -29,6 +29,7 @@ resource "aws_db_instance" "vprofile-rds" {
   skip_final_snapshot    = "true"
   db_subnet_group_name   = aws_db_subnet_group.vprofile-rds-subgrp.name
   vpc_security_group_ids = [aws_security_group.vprofile-backend-sg.id]
+  identifier             = "vprofile-rds-mysql"
 }
 
 resource "aws_elasticache_cluster" "vprofile-cache" {

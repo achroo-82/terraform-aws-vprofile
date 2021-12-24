@@ -1,6 +1,6 @@
 resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
-  name                = "vprofile-bean-prod"
-  application         = aws_elastic_beanstalk_application.bean-app.name
+  name        = "vprofile-bean-prod"
+  application = aws_elastic_beanstalk_application.bean-app.name
 
   solution_stack_name = "64bit Amazon Linux 2 v4.2.9 running Tomcat 8.5 Corretto 11"
   cname_prefix        = "vprofile-bean-prod-domain"
@@ -42,17 +42,17 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
   }
 
   setting {
-    namespace = "aws:autoscaling:launchconfiguration"
+    namespace = "aws:autoscaling:asg"
     name      = "Availability Zones"
     value     = "Any 3"
   }
   setting {
-    namespace = "aws:autoscaling:launchconfiguration"
+    namespace = "aws:autoscaling:asg"
     name      = "MinSize"
     value     = "1"
   }
   setting {
-    namespace = "aws:autoscaling:launchconfiguration"
+    namespace = "aws:autoscaling:asg"
     name      = "MaxSize"
     value     = "8"
   }
@@ -122,5 +122,5 @@ resource "aws_elastic_beanstalk_environment" "vprofile-bean-prod" {
     value     = "Rolling"
   }
 
-  depends_on = [aws_security_group.vprofile-bean-elb-sg,aws_security_group.vprofile-prod-sg]
+  depends_on = [aws_security_group.vprofile-bean-elb-sg, aws_security_group.vprofile-prod-sg]
 }
