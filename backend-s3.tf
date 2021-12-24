@@ -15,18 +15,18 @@
 #   key    = var.FOLDER_NAME1
 # }
 
-resource "aws_s3_bucket_object" "s3_key" {   
-  bucket   = var.BUCKET_NAME
-  acl      = "private"
-  key      = "vprofilekey"
-  source   = "vprofilekey"
+resource "aws_s3_bucket_object" "s3_key" {
+  bucket = var.BUCKET_NAME
+  acl    = "private"
+  key    = "vprofilekey"
+  source = "vprofilekey"
 }
 
-resource "aws_s3_bucket_object" "s3_key1" {   
-  bucket   = var.BUCKET_NAME
-  acl      = "private"
-  key      = "vprofilekey.pub"
-  source   = "vprofilekey.pub"
+resource "aws_s3_bucket_object" "s3_key1" {
+  bucket = var.BUCKET_NAME
+  acl    = "private"
+  key    = "vprofilekey.pub"
+  source = "vprofilekey.pub"
 }
 
 terraform {
